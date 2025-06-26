@@ -1,6 +1,6 @@
 // game configuration
 const GAME_CONFIG = {
-    tileSize: 24,
+    tileSize: 30,
     mapRows: 600, // canvas size
     mapCols: 800, // canvas size
     playerSpeed: 5,
@@ -17,5 +17,15 @@ const GAME_CONFIG = {
             death: "assets/sounds/death.wav",
         }
         */
-    }
+    },
+    map_layout:  [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1],
+        [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1],
+        [1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1],
+        [1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1],
+        [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
 };
+

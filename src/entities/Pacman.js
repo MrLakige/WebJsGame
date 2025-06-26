@@ -5,8 +5,9 @@ export default class Pacman{
         this.manager = manager;
         this.imageLoaded = false;
         // set starting position
-        this.x = 0;
-        this.y = 0;    
+        this.posOffset= GAME_CONFIG.tileSize;
+        this.x = GAME_CONFIG.tileSize;
+        this.y = GAME_CONFIG.tileSize;
         // load pacman configuration
         this.speed = GAME_CONFIG.playerSpeed;
         this.image = new Image();
@@ -22,7 +23,6 @@ export default class Pacman{
     move(direction){
         var tempX = this.x;
         var tempY = this.y;
-        console.log("pacman move ", direction);
         switch(direction){
             case 1: //up
                 if(tempY - this.speed < 0){
@@ -53,7 +53,7 @@ export default class Pacman{
                 }
                 break;
         }
-        if(this.manager.checkPosition(tempX, tempY)){
+        if(this.manager.checkPosition(tempX -this.posOffset, tempY -this.posOffset)){
             this.x = tempX;
             this.y = tempY;
         }
