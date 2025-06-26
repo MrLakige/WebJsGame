@@ -1,4 +1,4 @@
-class Ghost{
+export default class Ghost{
     constructor(id, type ,gameManager){
         this.id = player_name;
         this.gameManager = gameManager;
@@ -59,6 +59,10 @@ class Ghost{
             this.x = tempX;
             this.y = tempY;
         }
+    }
+
+    ghostDirector(px, py){
+
     }
 
     draw(ctx) {
