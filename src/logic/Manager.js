@@ -14,8 +14,17 @@ export default class Manager{
         // TODO: move ghosts
     }
 
-    checkPosition(x, y){
-        return this.map.isWall(x, y);
+    checkPosition(x, y, size){
+        const valLtop = this.map.getPosValue(x-size, y-size);
+        const valLbottom = this.map.getPosValue(x-size, y+size);
+        const valRtop = this.map.getPosValue(x+size, y-size);
+        const valRbottom = this.map.getPosValue(x+size, y+size);
+        console.log(valLtop, valLbottom, valRbottom, valRtop);
+        if(valLtop == 1 || valLbottom == 1 || valRtop == 1 || valRbottom == 1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     draw(ctx) {

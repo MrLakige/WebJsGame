@@ -5,15 +5,17 @@ export default class Pacman{
         this.manager = manager;
         this.imageLoaded = false;
         // set starting position
-        this.posOffset= GAME_CONFIG.tileSize;
-        this.x = GAME_CONFIG.tileSize;
-        this.y = GAME_CONFIG.tileSize;
+        this.posOffset= GAME_CONFIG.map.tileSize;
+        this.x = GAME_CONFIG.map.tileSize;
+        this.y = GAME_CONFIG.map.tileSize;
         // load pacman configuration
-        this.speed = GAME_CONFIG.playerSpeed;
+        this.speed = GAME_CONFIG.pacman.speed;
         this.image = new Image();
-        this.image.src = GAME_CONFIG.assetPaths.pacman; 
-        this.mapRows = GAME_CONFIG.mapRows;
-        this.mapCols = GAME_CONFIG.mapCols;
+        this.image.src = GAME_CONFIG.pacman.assetPath; 
+        this.size = GAME_CONFIG.pacman.size;
+        // load some map configuration
+        this.mapRows = GAME_CONFIG.map.rows*this.posOffset;
+        this.mapCols = GAME_CONFIG.map.cols*this.posOffset;
         // load image
         this.image.onload = () => {
             this.imageLoaded = true;
@@ -53,7 +55,7 @@ export default class Pacman{
                 }
                 break;
         }
-        if(this.manager.checkPosition(tempX -this.posOffset, tempY -this.posOffset)){
+        if(this.manager.checkPosition(tempX, tempY, this.size/2)){
             this.x = tempX;
             this.y = tempY;
         }
@@ -61,7 +63,7 @@ export default class Pacman{
 
     draw(ctx) {
         if (this.imageLoaded) {
-            ctx.drawImage(this.image, this.x, this.y, GAME_CONFIG.tileSize, GAME_CONFIG.tileSize);
+            ctx.drawImage(this.image, this.x, this.y, this.size, this.size);
         }
     }
 

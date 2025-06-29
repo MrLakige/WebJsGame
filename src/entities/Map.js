@@ -1,8 +1,8 @@
 
 export default class Map {
   constructor() {
-    this.layout = GAME_CONFIG.map_layout;
-    this.tileSize = GAME_CONFIG.tileSize; 
+    this.layout = GAME_CONFIG.map.layout;
+    this.tileSize = GAME_CONFIG.map.tileSize; 
   }
 
   draw(ctx) {
@@ -18,7 +18,7 @@ export default class Map {
             ctx.fillRect(x, y, this.tileSize, this.tileSize);
         } else if (tile === 2) {
             // Pellet
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = 'red';
             ctx.beginPath();
             ctx.arc(
                 x + this.tileSize / 2,
@@ -34,9 +34,15 @@ export default class Map {
     }
   }
 
-  isWall(x, y) {
-    const col = Math.floor(x / this.tileSize);
-    const row = Math.floor(y / this.tileSize);
-    return this.layout[row]?.[col] === 1;
+  getPosValue(x, y){
+    const col = Math.round(x / this.tileSize);
+    const row = Math.round(y / this.tileSize);
+    if(row >= 0 && row < this.layout.length){
+      if(col >=0 && col < this.layout[row].length){
+        return this.layout[row][col];
+      }
+    }
+    return -1;
   }
+
 }

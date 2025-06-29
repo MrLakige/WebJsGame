@@ -6,19 +6,19 @@ export default class Ghost{
         this.x = 0;
         this.y = 0;    
         // load ghost configuration
-        this.speed = GAME_CONFIG.ghostSpeed;
+        this.speed = GAME_CONFIG.ghosts.speed;
         this.mapRows = GAME_CONFIG.mapRows;
         this.mapCols = GAME_CONFIG.mapCols;
         this.image = new Image();
         switch(type){
             case "blue":
-                this.image = GAME_CONFIG.assetPaths.ghosts.blue; 
+                this.image = GAME_CONFIG.ghosts.assetPaths.blue; 
             break;
             case "red":
-                this.image = GAME_CONFIG.assetPaths.ghosts.red; 
+                this.image = GAME_CONFIG.ghosts.assetPaths.red; 
             break;
             default:
-                this.image = GAME_CONFIG.assetPaths.ghosts.blue; 
+                this.image = GAME_CONFIG.ghosts.assetPaths.blue; 
         }
     }
 
