@@ -1,10 +1,15 @@
 import Manager from './logic/Manager.js';
 
-const manager = new Manager();
+var manager;
 
 window.startGame = function () {
     console.log("Game started");
-    // Add your game loop or logic here
+    manager = new Manager();
+    const canvas = document.getElementById("gameCanvas");
+    canvas.style.display="block";
+    document.getElementById("btnStart").style.display = "none";
+    canvas.width = GAME_CONFIG.map.tileSize * GAME_CONFIG.map.cols;
+    canvas.height = GAME_CONFIG.map.tileSize * GAME_CONFIG.map.rows;
     gameLoop();
 };
 
@@ -18,3 +23,5 @@ function gameLoop() {
 
     requestAnimationFrame(gameLoop);
 }
+
+

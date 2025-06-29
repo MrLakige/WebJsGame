@@ -3,6 +3,15 @@ export default class Map {
   constructor() {
     this.layout = GAME_CONFIG.map.layout;
     this.tileSize = GAME_CONFIG.map.tileSize; 
+    // load pellet image
+    this.imageLoaded = false;
+    this.image = new Image();
+    this.image.src = GAME_CONFIG.map.pellet.path; 
+    this.pelletSize = GAME_CONFIG.map.pellet.size;
+    this.image.onload = () => {
+      this.imageLoaded = true;
+    };
+
   }
 
   draw(ctx) {
@@ -18,16 +27,23 @@ export default class Map {
             ctx.fillRect(x, y, this.tileSize, this.tileSize);
         } else if (tile === 2) {
             // Pellet
-            ctx.fillStyle = 'red';
-            ctx.beginPath();
-            ctx.arc(
-                x + this.tileSize / 2,
-                y + this.tileSize / 2,
-                this.tileSize / 6,
-                0,
-                Math.PI * 2
-            );
+            if(this.imageLoaded) {
+              // Center and draw the pellet image
+              const pelletX = x + (this.tileSize - this.pelletSize) / 2;
+              const pelletY = y + (this.tileSize - this.pelletSize) / 2;
+              ctx.drawImage(this.image, pelletX, pelletY, this.pelletSize, this.pelletSize);
+            }else{
+              ctx.fillStyle = 'yellow';
+              ctx.beginPath();
+              ctx.arc(
+                  x + this.tileSize / 2,
+                  y + this.tileSize / 2,
+                  this.tileSize / 6,
+                  0,
+                  Math.PI * 2
+              );
             ctx.fill();
+            }
         }
         // else tile === 0 → empty
       }
@@ -43,6 +59,16 @@ export default class Map {
       }
     }
     return -1;
+  }
+
+  clearPelletAt(x, y) {
+    const col = Math.round(x / this.tileSize);
+    const row = Math.round(y / this.tileSize);
+    if(row >= 0 && row < this.layout.length){
+      if(col >=0 && col < this.layout[row].length){
+        this.layout[row][col] = 0;
+      }
+    }
   }
 
 }

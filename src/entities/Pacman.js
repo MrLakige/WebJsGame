@@ -3,23 +3,24 @@ export default class Pacman{
     constructor(name, manager){
         this.name = name;
         this.manager = manager;
-        this.imageLoaded = false;
-        // set starting position
-        this.posOffset= GAME_CONFIG.map.tileSize;
-        this.x = GAME_CONFIG.map.tileSize;
-        this.y = GAME_CONFIG.map.tileSize;
         // load pacman configuration
+        // load image
+        this.imageLoaded = false;
         this.speed = GAME_CONFIG.pacman.speed;
         this.image = new Image();
         this.image.src = GAME_CONFIG.pacman.assetPath; 
         this.size = GAME_CONFIG.pacman.size;
-        // load some map configuration
-        this.mapRows = GAME_CONFIG.map.rows*this.posOffset;
-        this.mapCols = GAME_CONFIG.map.cols*this.posOffset;
-        // load image
         this.image.onload = () => {
             this.imageLoaded = true;
         };
+        // load some map configuration
+        this.tileSize= GAME_CONFIG.map.tileSize;
+        this.mapRows = GAME_CONFIG.map.rows*this.tileSize;
+        this.mapCols = GAME_CONFIG.map.cols*this.tileSize;
+        // set starting position
+        this.posOffset= Math.round(this.size/4);
+        this.x = GAME_CONFIG.map.tileSize;
+        this.y = GAME_CONFIG.map.tileSize;
     }
 
     move(direction){
@@ -63,7 +64,7 @@ export default class Pacman{
 
     draw(ctx) {
         if (this.imageLoaded) {
-            ctx.drawImage(this.image, this.x, this.y, this.size, this.size);
+            ctx.drawImage(this.image, this.x+this.posOffset, this.y+this.posOffset, this.size, this.size);
         }
     }
 
