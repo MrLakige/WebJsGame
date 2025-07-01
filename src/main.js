@@ -20,6 +20,7 @@ function gameLoop() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     manager.draw(ctx); 
+    manager.autoMovePacman();
 
     requestAnimationFrame(gameLoop);
 }

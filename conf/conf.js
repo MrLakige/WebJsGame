@@ -2,8 +2,8 @@
 const GAME_CONFIG = {
 
     pacman:{
-        speed: 5,
-        size: 25,
+        speed: 2,
+        size: 20,
         assetPath: "assets/images/pacman.png",
     },
 
@@ -17,7 +17,7 @@ const GAME_CONFIG = {
     },
 
     map:{
-        tileSize: 35,
+        tileSize: 30,
         pellet:{
             path:"assets/images/pellet.png",
             size: 15,

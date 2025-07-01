@@ -10,14 +10,21 @@ export default class Manager{
         this.map = new Map();
         this.pacman = new Pacman("player",this);
         this.input = new Input(this);
+        this.lastDirection=1;
     }
 
 
 
     move(direction){
+        this.lastDirection=direction;
         this.pacman.move(direction);
         // TODO: move ghosts
     }
+
+    autoMovePacman(){
+        this.pacman.move(this.lastDirection);
+    }
+
 
     checkPosition(x, y, size){
         const corners = [
